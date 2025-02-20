@@ -15,6 +15,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <sonar.junit.reportPaths>target/test-classes</sonar.junit.reportPaths>
         <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>target/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> <!-- Added this line -->
     </properties>
 
     <dependencies>
