@@ -13,8 +13,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<sonar.junit.reportPaths>target/test-classes</sonar.junit.reportPaths>
-		<sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
 	</properties>
 
 	<dependencies>
@@ -79,15 +77,6 @@
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.9.1.2184</version> <!-- You can change the version as needed -->
-				<executions>
-					<execution>
-						<id>sonar</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sonar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -96,77 +85,4 @@
 		<module>dummy_maven_module</module>
 		<module>unit_test_demo</module>
 	</modules>
-
-	<profiles>
-		<!-- Profile for Unit Tests -->
-		<profile>
-			<id>unit-tests</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.sonarsource.scanner.maven</groupId>
-						<artifactId>sonar-maven-plugin</artifactId>
-						<version>3.9.1.2184</version> <!-- Use appropriate version -->
-						<executions>
-							<execution>
-								<id>sonar</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sonar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-			<dependencies>
-				<dependency>
-					<groupId>org.junit.jupiter</groupId>
-					<artifactId>junit-jupiter-api</artifactId>
-					<version>5.7.1</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.junit.jupiter</groupId>
-					<artifactId>junit-jupiter-engine</artifactId>
-					<version>5.7.1</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<!-- Profile for Integration Tests -->
-		<profile>
-			<id>integration-tests</id>
-			<properties>
-				<skipTests>true</skipTests> <!-- skip unit tests in integration testing profile -->
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<executions>
-							<execution>
-								<id>integration-test</id>
-								<phase>integration-test</phase>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>verify</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 </project>
